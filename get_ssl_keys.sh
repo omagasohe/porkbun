@@ -19,10 +19,9 @@ fi
 
 DOMAIN="$1"
 
-#DOMAIN="stallings.xyz"
 OUTDIR="$HOME/ssl_keys/$DOMAIN"
 
-mkdir -p "$OUTDIR/$DOMAIN"
+mkdir -p "$OUTDIR/"
 
 RESPONSE=$(curl -s -X POST "https://api.porkbun.com/api/json/v3/ssl/retrieve/$DOMAIN" \
   -H "Content-Type: application/json" \
@@ -34,9 +33,9 @@ echo "$RESPONSE"
 if echo "$RESPONSE" | jq -e .status >/dev/null 2>&1; then
   STATUS=$(echo "$RESPONSE" | jq -r .status)
   if [ "$STATUS" = "SUCCESS" ]; then
-    echo "$RESPONSE" | jq -r '.publickey' > "$OUTDIR/$DOMAIN/public.key.pem"
-    echo "$RESPONSE" | jq -r '.certificatechain' > "$OUTDIR/$DOMAIN/domain.cert.pem"
-    echo "$RESPONSE" | jq -r '.privatekey' > "$OUTDIR/$DOMAIN/private.key.pem"
+    echo "$RESPONSE" | jq -r '.publickey' > "$OUTDIR/public.key.pem"
+    echo "$RESPONSE" | jq -r '.certificatechain' > "$OUTDIR/domain.cert.pem"
+    echo "$RESPONSE" | jq -r '.privatekey' > "$OUTDIR/private.key.pem"
     echo "Saved certificate, CA bundle, and private key to $OUTDIR"
   else
     echo "API error: $STATUS"
