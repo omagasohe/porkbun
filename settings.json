@@ -1,8 +1,4 @@
 {
-  "certs_root": "/home/james/ssl_keys",
-  "domains": [
-    "stallings.xyz",
-    "stallings.help",
-    "jamess.top"
-  ]
+  "certs_root": "~/ssl_keys"
+
 }
