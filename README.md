@@ -4,7 +4,7 @@ Repo for shell scripts to use [porkbun](http://porkbun.com)'s api to manage vari
 # Requirements
 - [jq](https://github.com/jqlang/jq) to parse json. 
 - [curl](https://github.com/curl/curl) to do the actual connections.
-
+- [gum](https://github.com/charmbracelet/gum) Tui's use gum to be pretty
 # apikey.json
 the scripts expect you to have a apikey.json file with apropriate keys from porkbun.
 
@@ -12,17 +12,18 @@ the scripts expect you to have a apikey.json file with apropriate keys from pork
 {
     "apikey":"pk1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "secretapikey":"sk1_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    "resend":"re_A2hrpG2w_P4hEcXGc3vTiFVEtiPmMv7dE"
 }
 ```
 # settings.json
 This has the commmon configuration info. modify this to your liking, because it's definately how I like it.
-# get_ssl_keys.sh
+# ssl_pull_keys.sh
 ```
 get_ssl_keys.sh [domain]
 ```
 This gets the ssl key bundle for domain and places it into `~/ssl_keys/[domain]/`
 
-# check_ssl_keys.sh 
+# ssl_key_expire.sh 
 `check_ssl_keys.sh domain [--bool]`
 simple check to see when a set of keys expire. the --bool flag give true or false if it expires in 7 days.
 
